@@ -15,7 +15,8 @@ class NewsRepository {
 
     companion object {
 
-        var API_KEY = Constants.NEWS_API_KEY
+//        var API_KEY = Constants.NEWS_API_KEY
+        var API_KEY = Constants.newsApiKey()
 
         private var newsRepository: NewsRepository? = null
 

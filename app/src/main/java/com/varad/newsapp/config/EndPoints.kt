@@ -9,4 +9,5 @@ object EndPoints {
 
     const val EVERYTHING = "everything"
     const val TOP_HEADLINES = "top-headlines"
+    const val SOURCES = "sources"
 }

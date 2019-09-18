@@ -1,13 +1,12 @@
-package com.varad.newsapp
+package com.varad.newsapp.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.varad.newsapp.R
 import com.varad.newsapp.adapters.NewsAdapter
 import com.varad.newsapp.models.NewsArticle
 import com.varad.newsapp.models.NewsResponse
@@ -17,9 +16,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var articleArrayList: ArrayList<NewsArticle> = ArrayList()
-    var newsAdapter: NewsAdapter? = null
-    var newsViewModel: NewsViewModel? = null
+    private var articleArrayList: ArrayList<NewsArticle> = ArrayList()
+    private var newsAdapter: NewsAdapter? = null
+    private var newsViewModel: NewsViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,10 +31,12 @@ class MainActivity : AppCompatActivity() {
 
         newsViewModel?.getNewsRepository()?.observe(this, Observer<NewsResponse> { result ->
             runOnUiThread {
-                val newsArticles = result.articles
-                articleArrayList.addAll(newsArticles)
+                if (result != null) {
+                    val newsArticles = result.articles
+                    articleArrayList.addAll(newsArticles)
 //                Log.d("NEWS", "List - $articleArrayList")
-                newsAdapter?.notifyDataSetChanged()
+                    newsAdapter?.notifyDataSetChanged()
+                }
             }
         })
     }

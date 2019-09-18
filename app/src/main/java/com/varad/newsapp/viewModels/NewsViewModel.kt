@@ -23,7 +23,8 @@ class NewsViewModel : ViewModel() {
         }
         newsRepository = NewsRepository.instance
 //        mutableLiveData = newsRepository?.getNews("google-news")
-        mutableLiveData = newsRepository?.getAllNews("article370")
+//        mutableLiveData = newsRepository?.getAllNews("article370")
+        mutableLiveData = newsRepository?.getAllNews("apple-event")
     }
 
     fun getNewsRepository(): LiveData<NewsResponse>? {
